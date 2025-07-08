@@ -13,6 +13,7 @@ export const resetGame = (setActive, setTimer, setCells) => {
     });
     setCells(elements);
     document.getElementById('startBtn').disabled = false; // Re-enable the start button
+    document.getElementById('output').innerHTML = ''; // Clear output message
 }
 
 export const playGame = (event, active, setActive, cells, setCells) => {
@@ -21,7 +22,7 @@ export const playGame = (event, active, setActive, cells, setCells) => {
         // Check if all cells are done
         if (!cells[0]) {
             setActive(false);
-            alert('You win!');
+            document.getElementById('output').innerHTML = 'You Win!';
         } else {
             nextTarget(cells, setCells);
         }
@@ -31,7 +32,7 @@ export const playGame = (event, active, setActive, cells, setCells) => {
     } else {
         event.target.className = 'cell-wrong';
         setActive(false);
-        alert('Game Over! You clicked the wrong cell.');
+        document.getElementById('output').innerHTML = 'Game Over! You clicked the wrong cell.';
     }
 }
 

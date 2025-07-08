@@ -50,7 +50,8 @@ const Game = () => {
 
     return (
         <div className="game-wrapper">
-            <h2>{level.charAt(0).toUpperCase().concat(level.slice(1))} Mode</h2>
+            <h2 id='output' style={{marginBottom: "10px"} }></h2>
+            <h3>{level.charAt(0).toUpperCase().concat(level.slice(1))} Mode</h3>
             <button id='startBtn' onClick={(event) => { startGame(event, setActive, cells, setCells) }}>Start</button>
             <button id='resetBtn' onClick={() => { resetGame(setActive, setTimer, setCells) }}>Reset</button>
             <p>Time elapsed: {timer}</p>
