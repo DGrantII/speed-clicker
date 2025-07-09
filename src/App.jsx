@@ -14,7 +14,8 @@ function App() {
             <Route path=":level" element={<Game />} />
             <Route path="cps" element={<Cps />} />
         </Route>
-    ));
+    ),{ basename: '/speed-clicker' } // Set the base path for the application
+    );
 
     return (
         <RouterProvider router={router} />
