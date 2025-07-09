@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://dgrantii.github.io/speed-clicker",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -27,6 +28,5 @@
     "gh-pages": "^6.3.0",
     "globals": "^16.2.0",
     "vite": "^7.0.0"
-  },
-  "homepage": "https://dgrantii.github.io/speed-clicker"
+  }
 }
