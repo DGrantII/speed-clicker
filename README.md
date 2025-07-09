@@ -3,6 +3,7 @@ Speed Clicker
 
 A fast-paced, reflex-testing clicker game built with React and Vite.
 Challenge yourself to complete clickable grids as quickly as possible, or test your clicking speed in the CPS (Clicks Per Second) test!
+(Disclaimer: The game is still a work-in-progress, I am currently working on improvements such as error boundaries and highscores)
 
 Live Demo
 ---------
