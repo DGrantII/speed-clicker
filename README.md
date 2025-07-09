@@ -1,12 +1,80 @@
-# React + Vite
+Speed Clicker
+=============
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fast-paced, reflex-testing clicker game built with React and Vite.
+Challenge yourself to complete clickable grids as quickly as possible, or test your clicking speed in the CPS (Clicks Per Second) test!
 
-Currently, two official plugins are available:
+Live Demo
+---------
+Play it here: https://dgrantii.github.io/speed-clicker/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
+--------
+- Three game difficulties: Easy (3x3), Medium (4x4), Hard (5x5)
+- Click the highlighted cell to convert the grid to green as fast as possible
+- Miss a target? The game ends!
+- CPS Test: See how many times you can click in 5 seconds
+- Clean, responsive UI
+- Built with React, React Router, and Vite
 
-## Expanding the ESLint configuration
+Getting Started
+---------------
+1. Clone the repository:
+   git clone https://github.com/DGrantII/speed-clicker.git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Install dependencies:
+   npm install
+
+3. Run the development server:
+   npm run dev
+
+4. Open your browser and go to:
+   http://localhost:5173
+
+Deployment to GitHub Pages
+--------------------------
+1. Make sure vite.config.js contains:
+   base: '/speed-clicker/',
+
+2. Build and deploy:
+   npm run build
+   npm run deploy
+
+3. The app will be available at:
+   https://dgrantii.github.io/speed-clicker/
+
+Project Structure
+-----------------
+/src
+  /components        Reusable React components (Navigation, Header, etc)
+  /pages             Main game pages (Home, Game, Cps, Root)
+  /utils             Game logic utilities
+  index.css          Global styles
+vite.config.js       Vite configuration
+
+How to Play
+-----------
+1. Choose a difficulty from the navigation.
+2. Click “Start” to begin.
+3. Click only the highlighted (blue) cell to turn it green.
+4. Complete the grid as fast as possible. Missing the target ends the game!
+5. Try the CPS Test to measure your clicking speed.
+
+Customization
+-------------
+- Add more levels or features by editing /src/pages and /src/utils.
+- Style the game in /src/index.css and /src/App.css.
+
+Credits
+-------
+- Developed by DGrantII
+- Built with React, React Router, and Vite
+- Bootstrap 5 for base styling
+
+License
+-------
+MIT License
+
+Contributions
+-------------
+Pull requests and suggestions are welcome!
