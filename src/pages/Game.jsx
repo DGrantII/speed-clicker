@@ -49,7 +49,7 @@ const Game = () => {
     
 
     return (
-        <div className="game-wrapper">
+        <div className="col-12 col-md-6 align-self-center text-center pt-5 px-5">
             <h2 id='output' style={{marginBottom: "10px"} }></h2>
             <h3>{level.charAt(0).toUpperCase().concat(level.slice(1))} Mode</h3>
             <button id='startBtn' onClick={(event) => { startGame(event, setActive, cells, setCells) }}>Start</button>

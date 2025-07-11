@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div className='home-wrapper'>
+        <div className='col-12 col-md-6 align-self-center text-center pt-5 px-5'>
             <h1>Welcome to Speed Clicker!</h1>
             <h2>How to Play:</h2>
             <p>

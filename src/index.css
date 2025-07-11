@@ -69,7 +69,7 @@ button:focus-visible {
 */
 
 .nav-links {
-    padding: 12px 180px;
+    padding: 12px 0;
     background: #56009b;
     color: white;
     list-style: none;
@@ -90,13 +90,6 @@ button:focus-visible {
     background: #320059;
 }
 
-.game-wrapper, .cps-wrapper, .home-wrapper {
-    text-align: center;
-    margin: 10px auto 0;
-    max-width: 50%;
-    padding: 20px;
-}
-
 /* Button styles */
 button {
     background-color: #56009b;
@@ -114,10 +107,6 @@ button:active {
 }
 
 /* CPS styles */
-.cps-wrapper {
-    width: 40%;
-}
-
 .cps-header {
     margin-bottom: 20px;
 }

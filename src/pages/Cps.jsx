@@ -65,7 +65,7 @@ const Cps = () => {
     }, [clicks]);
 
     return (
-        <div className="cps-wrapper">
+        <div className="col-12 col-md-6 align-self-center text-center pt-5 px-5">
             <div className="cps-header">
                 <h2>Clicks Per Second (CPS) Test</h2>
                 <p>Click the section below as fast as you can for 5 seconds!</p>

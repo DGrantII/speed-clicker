@@ -6,7 +6,9 @@ const Root = () => {
     return (
         <>
             <Navigation />
-            <Outlet />
+            <div className="row justify-content-center">
+                <Outlet />
+            </div>
         </>
     )
 }
