@@ -4,9 +4,11 @@ export const startGame = (event, setActive, cells, setCells) => {
     event.target.disabled = true; // Disable the start button after starting the game
 }
 
-export const resetGame = (setActive, setTimer, setCells) => {
-    setActive(false);
-    setTimer('0');
+export const resetGame = (setActive, setTimer, setCells, setGreenCells, setHighScoreStatus) => {
+    setActive(false); // Deactivate the game
+    setTimer('0'); // Reset the timer to 0
+    setGreenCells(0); // Reset the count of green cells
+    setHighScoreStatus(null); // Reset high score status
     const elements = Array.from(document.querySelectorAll('.cell-target, .cell-done, .cell-wrong, .cell-available'));
     elements.forEach(cell => {
         cell.className = 'cell-available';
@@ -16,12 +18,13 @@ export const resetGame = (setActive, setTimer, setCells) => {
     document.getElementById('output').innerHTML = ''; // Clear output message
 }
 
-export const playGame = (event, active, setActive, cells, setCells) => {
+export const playGame = (event, active, setActive, cells, setCells, setGreenCells) => {
     if (event.target.className === 'cell-target') {
         event.target.className = 'cell-done';
+        setGreenCells(prev => prev + 1); // Increment the count of green cells
         // Check if all cells are done
         if (!cells[0]) {
-            setActive(false);
+            setActive(false); // Deactivate the game
             document.getElementById('output').innerHTML = 'You Win!';
         } else {
             nextTarget(cells, setCells);
