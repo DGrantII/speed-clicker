@@ -27,8 +27,7 @@ export const playGame = (event, active, setActive, cells, setCells) => {
             nextTarget(cells, setCells);
         }
     } else if (active === false) {
-        alert('Please start the game first!'); // Alert if user clicks before starting the game
-        return;
+        return; // Do nothing if the game is not active
     } else {
         event.target.className = 'cell-wrong';
         setActive(false);

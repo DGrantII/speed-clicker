@@ -4,6 +4,7 @@ import Root from './pages/Root';
 import Home from './pages/Home';
 import Game from './pages/Game';
 import Cps from './pages/Cps';
+import Error from './components/Error';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path=":level" element={<Game />} />
             <Route path="cps" element={<Cps />} />
+            <Route path="*" element={<Error />} />
         </Route>
     ),{ basename: '/speed-clicker' } // Set the base path for the application
     );

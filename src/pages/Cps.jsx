@@ -87,6 +87,7 @@ const Cps = () => {
         clicksRef.current = clicks; // Update clicksRef with the latest clicks count
     }, [clicks]);
 
+    // Storing and comparing values for High Score
     const [highScore, setHighScore] = useState(() => {
         return localStorage.getItem('highscore-cps') || 0;
     });

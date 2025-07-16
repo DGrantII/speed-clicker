@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { startGame, resetGame, playGame } from '../utils/game-logic';
+import Error from '../components/Error';
 
 const Game = () => {
     const { level } = useParams(); // Extracting level from URL parameters
-    if (level !== 'easy' && level !== 'medium' && level !== 'hard') {
-        throw new Error('Invalid level specified. Please choose easy, medium, or hard.'); // Error handling for invalid levels
-    }
+    const allowedLevels = ['easy', 'medium', 'hard'];
+    
     const [size, setSize] = useState(0);
 
     // Initializing timer
@@ -15,6 +15,7 @@ const Game = () => {
 
     // Initializing cells and grid
     const [cells, setCells] = useState([]);
+
     useEffect(() => {
         // Setting grid size based on level
         if (level === 'easy') {
@@ -46,7 +47,10 @@ const Game = () => {
             setTimer(prev => prev);
         }
     }, [active]);
-    
+
+    if (!allowedLevels.includes(level)) {
+        return <Error />; // Error handling for invalid levels
+    }
 
     return (
         <div className="col-12 col-md-6 align-self-center text-center pt-5 px-5">
