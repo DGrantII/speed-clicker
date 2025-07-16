@@ -83,13 +83,6 @@ const Game = () => {
         }
     }, [active, greenCells, timer, level, highScoreCells, highScoreTime]);
 
-    const handleResetHighScore = () => {
-        localStorage.setItem(`highscore-time-${level}`, 0);
-        localStorage.setItem(`highscore-cells-${level}`, 0);
-        setHighScoreCells(0);
-        setHighScoreTime(0);
-    }
-
     if (!allowedLevels.includes(level)) {
         return <Error />; // Error handling for invalid levels
     }
@@ -101,7 +94,6 @@ const Game = () => {
             <h3>{level.charAt(0).toUpperCase().concat(level.slice(1))} Mode</h3>
             <button id='startBtn' onClick={(event) => { startGame(event, setActive, cells, setCells) }}>Start</button>
             <button id='resetBtn' onClick={() => { resetGame(setActive, setTimer, setCells, setGreenCells, setHighScoreStatus) }}>Reset</button>
-            <button id='resetHighScoreBtn' onClick={handleResetHighScore}>Reset High Score</button>
             <p>Time elapsed: {timer}</p>
             {highScoreStatus !== null && <p>{highScoreStatus}</p>}
             <div className={`grid grid-${level}`}>
