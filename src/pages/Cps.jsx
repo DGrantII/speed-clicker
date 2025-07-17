@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Col from 'react-bootstrap/Col';
 
 const Cps = () => {
     const [clicks, setClicks] = useState(0);
@@ -103,11 +104,11 @@ const Cps = () => {
     }, [cps, highScore]);
 
     return (
-        <div className="col-12 col-md-6 align-self-center text-center pt-5 px-5">
+        <Col xs={12} md={6} className="align-self-center text-center pt-5 px-5">
             <div className="cps-header">
                 <h2>Clicks Per Second (CPS) Test</h2>
                 <p>Click the section below as fast as you can for 5 seconds!</p>
-                <button onClick={handleReset}>Reset</button>
+                <button className='game-button' onClick={handleReset}>Reset</button>
             </div>
             <div
                 ref={containerRef}
@@ -125,7 +126,7 @@ const Cps = () => {
             <h2>{timerActive && <p>Time left: {timeLeft}s</p>}</h2>
             <p>Clicks: {clicks}</p>
             <p>Personal Highscore: {highScore}</p>
-        </div>
+        </Col>
     )
 
 }

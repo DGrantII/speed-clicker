@@ -1,8 +1,12 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col';
 
 const Home = () => {
     return (
-        <div className='col-12 col-md-6 align-self-center text-center pt-5 px-5'>
+        <Col
+            xs={12}
+            md={6}
+            className='align-self-center text-center pt-5 px-5'>
             <h1>Welcome to Speed Clicker!</h1>
             <h2>How to Play:</h2>
             <p>
@@ -16,7 +20,7 @@ const Home = () => {
                 <br /><br />
                 Try to complete the grid as quickly as possible!
             </p>
-        </div>
+        </Col>
     )
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { startGame, resetGame, playGame } from '../utils/game-logic';
 import Error from '../components/Error';
+import Col from 'react-bootstrap/Col';
 
 const Game = () => {
     const { level } = useParams(); // Extracting level from URL parameters
@@ -88,12 +89,12 @@ const Game = () => {
     }
 
     return (
-        <div className="col-12 col-md-6 align-self-center text-center pt-5 px-5">
+        <Col xs={12} md={6} className="align-self-center text-center pt-5 px-5">
             <h2 id='output' style={{ marginBottom: "10px" }}></h2>
             {(!active && timer !== '0') && <h4>Score: {`${greenCells} correct cells in ${timer} seconds`}</h4>}
             <h3>{level.charAt(0).toUpperCase().concat(level.slice(1))} Mode</h3>
-            <button id='startBtn' onClick={(event) => { startGame(event, setActive, cells, setCells) }}>Start</button>
-            <button id='resetBtn' onClick={() => { resetGame(setActive, setTimer, setCells, setGreenCells, setHighScoreStatus) }}>Reset</button>
+            <button className='game-button' id='startBtn' onClick={(event) => { startGame(event, setActive, cells, setCells) }}>Start</button>
+            <button className='game-button' id='resetBtn' onClick={() => { resetGame(setActive, setTimer, setCells, setGreenCells, setHighScoreStatus) }}>Reset</button>
             <p>Time elapsed: {timer}</p>
             {highScoreStatus !== null && <p>{highScoreStatus}</p>}
             <div className={`grid grid-${level}`}>
@@ -105,7 +106,7 @@ const Game = () => {
                 ))}
             </div>
             <p>Personal Highscore: {`${highScoreCells} correct cells in ${highScoreTime} seconds`}</p>
-        </div>        
+        </Col>        
     );
 }
 
