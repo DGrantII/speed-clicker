@@ -9,6 +9,10 @@
     padding: 6px 24px !important;
     border: 2px solid transparent;
     transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .nav-link-custom.active,
@@ -26,7 +30,37 @@
     box-shadow: none;
 }
 
-.nav-toggle-custom {
+.btn-custom {
+    color: white !important;
+    border-radius: 50rem;
+    padding: 6px 24px !important;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.btn-custom.active,
+.btn-custom:active {
+    background-color: #320059;
+    border-color: transparent;
+}
+
+.btn-custom.hover,
+.btn-custom:hover,
+.btn-custom:focus {
+    border-color: #CDA3FF;
+}
+
+.btn-custom:focus-visible {
+    box-shadow: none;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #56009b !important;
 }
 
 /* Button styles */
@@ -94,6 +128,27 @@
 .grid-hard {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
+}
+
+.slider-grid {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.slider-grid div {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    transition: top 500ms linear, left 500ms linear;
+}
+
+#slider-center {
+    top: 70px;
+    left: 70px;
 }
 
 .cell-available {
