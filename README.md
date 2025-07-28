@@ -70,7 +70,7 @@ Credits
 -------
 - Developed by DGrantII
 - Built with React, React Router, and Vite
-- Bootstrap 5 for base styling
+- React Bootstrap for styling
 
 License
 -------
