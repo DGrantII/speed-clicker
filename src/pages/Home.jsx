@@ -1,27 +1,36 @@
+/**
+ * Home page with welcome copy and step-by-step instructions for Normal mode gameplay.
+ */
 import React from 'react';
-import Col from 'react-bootstrap/Col';
+import PageShell from '../components/PageShell';
 
+// Landing route content; game modes are reached via the navigation bar
 const Home = () => {
     return (
-        <Col
-            xs={12}
-            md={6}
-            className='align-self-center text-center pt-5 px-5'>
-            <h1>Welcome to Speed Clicker!</h1>
-            <h2>How to Play:</h2>
-            <p>
-                Objective: Try to convert the entire grid to green.
-                <br /><br />
-                When you start the game, the first target cell will turn
-                blue. Click on it to turn it green. Continue clicking on
-                the blue cells until you convert the entire grid.
-                <br /><br />
-                Watch out! If you miss the target cell, the game will end.
-                <br /><br />
-                Try to complete the grid as quickly as possible!
-            </p>
-        </Col>
-    )
-}
+        <PageShell title="Welcome">
+            <div className="home-intro">
+                <p>
+                    Speed Clicker tests how fast and accurately you can hit moving targets.
+                    Choose a mode from the menu above to begin.
+                </p>
+            </div>
+            <h3>How to Play</h3>
+            <div className="instruction-step">
+                <strong>Objective:</strong> Turn every cell on the grid green as quickly as you can.
+            </div>
+            <div className="instruction-step">
+                When the game starts, one cell turns blue. Click it to turn it green, then keep
+                clicking each new blue cell until the whole grid is green.
+            </div>
+            <div className="instruction-step">
+                <strong>Watch out:</strong> Clicking the wrong cell ends the game immediately.
+            </div>
+            <div className="instruction-step">
+                Try to clear the grid in the shortest time possible and beat your personal high score.
+            </div>
+            <p className="home-callout">Pick a mode from the menu above to start playing.</p>
+        </PageShell>
+    );
+};
 
 export default Home;

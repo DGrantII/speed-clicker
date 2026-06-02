@@ -1,98 +1,113 @@
+/**
+ * Clicks-per-second (CPS) test page: rapid clicking in a timed zone with local high score.
+ */
 import React, { useState, useEffect, useRef } from 'react';
-import Col from 'react-bootstrap/Col';
+import PageShell from '../components/PageShell';
 
+// Five-second click test with ripple feedback and CPS calculation
 const Cps = () => {
+    // Total clicks registered during the current or last test
     const [clicks, setClicks] = useState(0);
+    // Calculated clicks per second after the timer ends; null before first result
     const [cps, setCps] = useState(null);
+    // Whether the five-second countdown is running
     const [timerActive, setTimerActive] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(5); // 5 seconds timer
-    const [enableDiv, setEnableDiv] = useState(true); // To enable/disable the div
+    // Seconds remaining on the countdown
+    const [timeLeft, setTimeLeft] = useState(5);
+    // Whether the click target accepts input
+    const [enableDiv, setEnableDiv] = useState(true);
+
+    // Interval id for the one-second countdown
     const timerRef = useRef(null);
-    const clicksRef = useRef(0); // Ref to keep track of clicks without causing re-renders
-
-    // Function for the ripple effect
+    // Latest click count readable inside interval callbacks without stale closures
+    const clicksRef = useRef(0);
+    // Click target element used to position ripple effects
     const containerRef = useRef(null);
-    const rippleEffect = (e) => {
-        const container = containerRef.current; // Get the container element
-        const circle = document.createElement('span'); // Create a span element for the ripple effect
-        circle.className = 'ripple'; // Assign a class for styling the ripple effect
-        const rect = container.getBoundingClientRect(); // Get the dimensions of the container
-        const size = Math.max(rect.width, rect.height); // Calculate the size of the ripple effect based on the container's dimensions
-        const x = e.clientX - rect.left - size / 2; // Calculate the x position for the ripple effect
-        const y = e.clientY - rect.top - size / 2; // Calculate the y position for the ripple effect
-        circle.style.width = circle.style.height = `${size}px`; // Set the width and height of the ripple effect
-        circle.style.left = `${x}px`; // Set the left position of the ripple effect
-        circle.style.top = `${y}px`; // Set the top position of the ripple effect
-        container.appendChild(circle); // Append the ripple effect to the container
-        setTimeout(() => {
-            circle.remove(); // Remove the ripple effect after 600ms
-        }, 600);
-    }
 
+    // Banner text when the player beats the stored CPS record
+    const [highScoreStatus, setHighScoreStatus] = useState(null);
+    // Best CPS value loaded from and saved to localStorage
+    const [highScore, setHighScore] = useState(() => {
+        return localStorage.getItem('highscore-cps') || 0;
+    });
+
+    // Creates a short-lived ripple span at the click coordinates
+    const rippleEffect = (e) => {
+        const container = containerRef.current;
+        const circle = document.createElement('span');
+        circle.className = 'ripple';
+        const rect = container.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        circle.style.width = circle.style.height = `${size}px`;
+        circle.style.left = `${x}px`;
+        circle.style.top = `${y}px`;
+        container.appendChild(circle);
+        setTimeout(() => {
+            circle.remove();
+        }, 600);
+    };
+
+    // Handles each click: starts timer on first click, counts clicks, ends test at zero
     const handleClick = (e) => {
-        // Preventing default action and stopping propagation
         e.preventDefault();
         e.stopPropagation();
 
-        if (!enableDiv) return; // If the div is disabled, do nothing
+        if (!enableDiv) return;
 
-        rippleEffect(e); // Trigger ripple effect on click
-        // Starting timer on first click
+        rippleEffect(e);
+
         if (!timerActive) {
             setTimerActive(true);
-            setClicks(1); // First click ticks off the timer
-            setCps(null); // Reset CPS on new test
+            setClicks(1);
+            setCps(null);
 
-            // Setting up the timer
             timerRef.current = setInterval(() => {
-                setTimeLeft(prev => {
+                setTimeLeft((prev) => {
                     if (prev <= 1) {
-                        clearInterval(timerRef.current); // Clear timer when it reaches 0
-                        setTimerActive(false); // Stop the timer
-                        setCps((clicksRef.current / 5).toFixed(2)); // Calculate CPS
-                        setEnableDiv(false); // Disable the div after the test
+                        clearInterval(timerRef.current);
+                        setTimerActive(false);
+                        setCps((clicksRef.current / 5).toFixed(2));
+                        setEnableDiv(false);
                         return 0;
                     }
                     return prev - 1;
                 });
             }, 1000);
         } else {
-            setClicks(prev => prev + 1); // Increment click count
+            setClicks((prev) => prev + 1);
         }
-    }
+    };
 
-    const [highScoreStatus, setHighScoreStatus] = useState(null);
-
+    // Clears state so the user can run another CPS test
     const handleReset = () => {
         setClicks(0);
         setCps(null);
         setTimerActive(false);
-        setTimeLeft(5); // Reset timer to 5 seconds
-        setEnableDiv(true); // Re-enable the div for a new test
+        setTimeLeft(5);
+        setEnableDiv(true);
         setHighScoreStatus(null);
         if (timerRef.current) {
-            clearInterval(timerRef.current); // Clear any existing timer
+            clearInterval(timerRef.current);
         }
-    }
+    };
 
-    // Counting time down
+    // Clear interval on unmount to avoid leaks
     useEffect(() => {
         return () => {
             if (timerRef.current) {
-                clearTimeout(timerRef.current); // Clear timeout on cleanup
+                clearInterval(timerRef.current);
             }
         };
     }, []);
 
+    // Keep ref in sync with click state for the interval callback
     useEffect(() => {
-        clicksRef.current = clicks; // Update clicksRef with the latest clicks count
+        clicksRef.current = clicks;
     }, [clicks]);
 
-    // Storing and comparing values for High Score
-    const [highScore, setHighScore] = useState(() => {
-        return localStorage.getItem('highscore-cps') || 0;
-    });
-
+    // Persist a new CPS record when the finished score beats the stored high score
     useEffect(() => {
         if (cps !== null) {
             if (parseFloat(cps) > parseFloat(highScore)) {
@@ -104,11 +119,12 @@ const Cps = () => {
     }, [cps, highScore]);
 
     return (
-        <Col xs={12} md={6} className="align-self-center text-center pt-5 px-5">
+        <PageShell title="Clicks Per Second (CPS) Test">
             <div className="cps-header">
-                <h2>Clicks Per Second (CPS) Test</h2>
                 <p>Click the section below as fast as you can for 5 seconds!</p>
-                <button className='game-button' onClick={handleReset}>Reset</button>
+                <button className="game-button" onClick={handleReset}>
+                    Reset
+                </button>
             </div>
             <div
                 ref={containerRef}
@@ -121,14 +137,15 @@ const Cps = () => {
                 }}
             >
                 {(timerActive || cps === null) ? 'Click here!' : <p>Your CPS: {cps}</p>}
-                {highScoreStatus !== null && <p>{highScoreStatus}</p>}
             </div>
-            <h2>{timerActive && <p>Time left: {timeLeft}s</p>}</h2>
-            <p>Clicks: {clicks}</p>
-            <p>Personal Highscore: {highScore}</p>
-        </Col>
-    )
-
-}
+            {timerActive && <p className="timer-display">Time left: {timeLeft}s</p>}
+            <div className="cps-page-stats game-stats">
+                <p>Clicks: {clicks}</p>
+                {highScoreStatus !== null && <p className="stat-highlight">{highScoreStatus}</p>}
+                <p>Personal Highscore: {highScore}</p>
+            </div>
+        </PageShell>
+    );
+};
 
 export default Cps;

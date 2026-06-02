@@ -168,3 +168,167 @@
 .cell-wrong {
     background-color: red;
 }
+
+/* --- Page layout and typography --- */
+:root {
+    --color-primary: #56009b;
+    --color-primary-dark: #320059;
+    --color-accent: #CDA3FF;
+    --color-header: #282c34;
+    --color-surface: #f7f4fb;
+    --color-text: #2d2d2d;
+    --color-text-muted: #5c5c5c;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.site-header {
+    text-align: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: var(--color-header);
+    color: white;
+    width: 100%;
+}
+
+.site-header h1 {
+    margin-bottom: 0.25rem;
+}
+
+.site-header p {
+    margin-bottom: 0;
+    opacity: 0.9;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.site-main {
+    background-color: var(--color-surface);
+    min-height: calc(100vh - 12rem);
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.content-card {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.75rem;
+    padding: 2rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(86, 0, 155, 0.08);
+    text-align: center;
+}
+
+.content-card h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.25rem;
+}
+
+.content-card h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.home-intro {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.instruction-step {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--color-primary);
+    background-color: var(--color-surface);
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.home-callout {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-surface);
+    border-radius: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.error-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.error-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+.game-chrome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.game-chrome h3 {
+    margin: 0.5rem 0 0;
+}
+
+.game-chrome .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.game-chrome #output {
+    min-height: 1.5rem;
+    margin-bottom: 0;
+}
+
+.game-stats {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.stat-highlight {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin: 0;
+}
+
+.timer-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0.5rem 0;
+}
+
+.cps-page-stats {
+    margin-top: 1.25rem;
+}
+
+.game-button {
+    padding: 8px 20px;
+    border: 2px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.game-button:hover {
+    border-color: var(--color-accent);
+}
+
+.game-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}

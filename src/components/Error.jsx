@@ -1,13 +1,22 @@
-// This component displays a simple error message when the user navigates to a non-existent page.
+/**
+ * Fallback UI for unknown routes; shown when no matching route is found.
+ */
 import React from 'react';
-import Col from 'react-bootstrap/Col';
+import { NavLink } from 'react-router-dom';
+import PageShell from './PageShell';
 
+// 404-style message with a link back to the home page
 const Error = () => {
     return (
-        <Col xs={12} md={6} className='align-self-center text-center pt-5 px-5'>
-            <h1>Uh-Oh! The page you were looking for is not found.</h1>
-        </Col>
-    )
-}
+        <PageShell title="Page not found">
+            <p>Uh-oh! The page you were looking for does not exist.</p>
+            <p>
+                <NavLink to="/" className="error-link">
+                    Return to Home
+                </NavLink>
+            </p>
+        </PageShell>
+    );
+};
 
 export default Error;
